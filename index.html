@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Vann</title>
+    <style>
+        /* Gaya Dasar */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            font-size: 24px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        p.subtitle {
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 30px;
+        }
+
+        /* Gaya Tombol */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #333;
+            color: white;
+            text-decoration: none;
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #444;
+            transform: scale(1.02);
+        }
+
+        .btn-qris {
+            background-color: #444;
+            margin-top: 10px;
+        }
+
+        /* Halaman QRIS (Tersembunyi secara default) */
+        #qris-page {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #000;
+            z-index: 1000;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #qris-page img {qris.jpg
+            max-width: 90%;
+            max-height: 70vh;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        .btn-back {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #cc0000;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="main-page">
+        <h1>PAYMENT Vann</h1>
+        <p class="subtitle">Klik Button untuk salin nomor</p>
+<p class="subtitle">peringatan,transfer menggunakan qris selain aplikasi dana akan terkena pending 1 hari</p>
+        <button class="btn" onclick="copyText('085776429951')">
+            💳 Dana: 085776429951
+        </button>
+
+        <button class="btn btn-qris" onclick="showQRIS()">
+            💸 Lihat QRIS
+        </button>
+    </div>
+
+    <div id="qris-page">
+        <h2 style="margin-bottom: 20px;">SCAN QRIS</h2>
+        <<img src="qris.jpg" 
+       alt="QRIS Vann" style="max-width: 80%; height: auto; border-radius: 10px; box-shadow: 0 0 20px rgba(255,255,255,0.2);">
+        
+        <button class="btn-back" onclick="hideQRIS()">Kembali</button>
+    </div>
+
+    <script>
+        // Fungsi Salin Teks
+        function copyText(number) {
+            navigator.clipboard.writeText(number);
+            alert("Nomor " + number + " berhasil disalin!");
+        }
+
+        // Fungsi Menampilkan Halaman QRIS
+        function showQRIS() {
+            document.getElementById('main-page').style.display = 'none';
+            document.getElementById('qris-page').style.display = 'flex';
+        }
+
+        // Fungsi Kembali ke Halaman Utama
+        function hideQRIS() {
+            document.getElementById('qris-page').style.display = 'none';
+            document.getElementById('main-page').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
